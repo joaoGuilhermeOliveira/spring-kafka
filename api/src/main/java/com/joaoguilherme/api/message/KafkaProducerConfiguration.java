@@ -38,10 +38,8 @@ public class KafkaProducerConfiguration {
     }
 
     @Bean
-    public KafkaTemplate<String, CarPostDto> userKafkaTemplate() {
-
+    public KafkaTemplate<String, CarPostDto> kafkaTemplate() {
         return new KafkaTemplate<>(userProducerFactory());
-
     }
 
 }
