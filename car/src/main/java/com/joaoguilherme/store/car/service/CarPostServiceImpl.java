@@ -7,6 +7,9 @@ import com.joaoguilherme.store.car.repository.OwnerPostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -27,8 +30,12 @@ public class CarPostServiceImpl implements CarPostService{
     @Override
     public void newPostDetails(CarPostDto carPostDto) {
         ownerPostRepository.findById(carPostDto.getOwnerId()).ifPresentOrElse(owner -> {
+
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+
             CarPostEntity carPostEntity = carPostMapper.toEntity(carPostDto);
             carPostEntity.setId(null);
+            carPostEntity.setCreatedDate(LocalDateTime.now().format(formatter));
             carPostEntity.setOwnerPost(owner);
             carPostRepository.save(carPostEntity);
         }, () -> {
