@@ -17,7 +17,7 @@ public class CarPostDto {
 
     private String brand;
 
-    private String price;
+    private Double price;
 
     private String description;
 
