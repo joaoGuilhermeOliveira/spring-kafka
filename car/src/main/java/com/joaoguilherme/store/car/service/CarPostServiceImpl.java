@@ -26,8 +26,14 @@ public class CarPostServiceImpl implements CarPostService{
 
     @Override
     public void newPostDetails(CarPostDto carPostDto) {
-        CarPostEntity carPostEntity = carPostMapper.toEntity(carPostDto);
-        carPostRepository.save(carPostEntity);
+        ownerPostRepository.findById(carPostDto.getOwnerId()).ifPresentOrElse(owner -> {
+            CarPostEntity carPostEntity = carPostMapper.toEntity(carPostDto);
+            carPostEntity.setId(null);
+            carPostEntity.setOwnerPost(owner);
+            carPostRepository.save(carPostEntity);
+        }, () -> {
+            throw new NoSuchElementException("Owner not found for ID: " + carPostDto.getOwnerId());
+        });
     }
 
     @Override
