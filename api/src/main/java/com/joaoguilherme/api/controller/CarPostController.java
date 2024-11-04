@@ -37,16 +37,16 @@ public class CarPostController {
         return ResponseEntity.status(HttpStatus.FOUND).body(carPostStoreService.getCarForSales());
     }
 
-    @PutMapping("/id")
+    @PutMapping("/{id}")
     public ResponseEntity changeCarSale(@RequestBody CarPostDto carPostDto, @PathVariable("id") String id) {
         carPostStoreService.changeCarForSale(carPostDto, id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @DeleteMapping("/id")
+    @DeleteMapping("/{id}")
     public ResponseEntity deleteCarForSale(@PathVariable("id") String id) {
         carPostStoreService.removeCarForSale(id);
-        return new ResponseEntity(HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 }

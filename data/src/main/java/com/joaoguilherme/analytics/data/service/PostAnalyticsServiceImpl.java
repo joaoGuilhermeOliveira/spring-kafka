@@ -38,7 +38,6 @@ public class PostAnalyticsServiceImpl implements PostAnalyticsService{
             brandAnalyticEntity.setPosts(1L);
             brandAnalyticsRepository.save(brandAnalyticEntity);
         });
-
     }
 
     private void saveCarModelAnalytics(String carModel) {

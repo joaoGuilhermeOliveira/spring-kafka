@@ -28,7 +28,7 @@ public class CarPostController {
     }
 
     @DeleteMapping("/car/{id}")
-    public ResponseEntity changeCarSale(@PathVariable("id") String id) {
+    public ResponseEntity deleteCarSale(@PathVariable("id") String id) {
         carPostService.removeCarSale(Long.valueOf(id));
         return new ResponseEntity<>(HttpStatus.OK);
     }

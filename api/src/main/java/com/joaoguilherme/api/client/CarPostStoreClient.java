@@ -2,7 +2,6 @@ package com.joaoguilherme.api.client;
 
 import com.joaoguilherme.api.dto.CarPostDto;
 import com.joaoguilherme.api.dto.OwnerPostDto;
-import org.apache.kafka.common.protocol.types.Field;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
