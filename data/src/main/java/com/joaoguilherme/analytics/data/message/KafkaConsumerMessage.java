@@ -22,7 +22,5 @@ public class KafkaConsumerMessage {
         System.out.println("Received Car Post information : " + carPost);
         LOG.info("ANALYTICS DATA - Received Car Post information: {}", carPost);
         postAnalyticsService.saveDataAnalytics(carPost);
-
     }
-
 }
