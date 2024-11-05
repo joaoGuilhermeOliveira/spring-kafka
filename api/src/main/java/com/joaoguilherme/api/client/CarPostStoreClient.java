@@ -1,7 +1,6 @@
 package com.joaoguilherme.api.client;
 
-import com.joaoguilherme.api.dto.CarPostDto;
-import com.joaoguilherme.api.dto.OwnerPostDto;
+import com.joaoguilherme.api.dto.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
@@ -16,6 +15,8 @@ public class CarPostStoreClient {
 
     private final String USER_STORE_SERVICE_URI = "http://localhost:8081/user";
     private final String POST_STORE_SERVICE_URI = "http://localhost:8081/sales";
+
+    private final String DATA_ANALYTICS_SERVICE_URI = "http://localhost:8082/data";
 
     @Autowired
     RestTemplate restTemplate;
@@ -35,6 +36,21 @@ public class CarPostStoreClient {
 
     public void deleteCarForSaleClient(String id) {
         restTemplate.delete(POST_STORE_SERVICE_URI+"/car/"+id);
+    }
+
+    public List<BrandAnalyticsDto> getBrandAnalytic() {
+        ResponseEntity<BrandAnalyticsDto[]> responseEntity = restTemplate.getForEntity(DATA_ANALYTICS_SERVICE_URI+"/brands", BrandAnalyticsDto[].class);
+        return Arrays.asList(Objects.requireNonNull(responseEntity.getBody()));
+    }
+
+    public List<CarModelAnalyticDto> getCarModelAnalytic() {
+        ResponseEntity<CarModelAnalyticDto[]> responseEntity = restTemplate.getForEntity(DATA_ANALYTICS_SERVICE_URI+"/models", CarModelAnalyticDto[].class);
+        return Arrays.asList(Objects.requireNonNull(responseEntity.getBody()));
+    }
+
+    public List<CarPriceAnalyticsDto> getCarPriceAnalytic() {
+        ResponseEntity<CarPriceAnalyticsDto[]> responseEntity = restTemplate.getForEntity(DATA_ANALYTICS_SERVICE_URI+"/prices", CarPriceAnalyticsDto[].class);
+        return Arrays.asList(Objects.requireNonNull(responseEntity.getBody()));
     }
 
 }

@@ -1,7 +1,10 @@
 package com.joaoguilherme.api.service;
 
 import com.joaoguilherme.api.client.CarPostStoreClient;
+import com.joaoguilherme.api.dto.BrandAnalyticsDto;
+import com.joaoguilherme.api.dto.CarModelAnalyticDto;
 import com.joaoguilherme.api.dto.CarPostDto;
+import com.joaoguilherme.api.dto.CarPriceAnalyticsDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,5 +26,17 @@ public class CarPostStoreService {
 
     public void removeCarForSale(String id) {
         carPostStoreClient.deleteCarForSaleClient(id);
+    }
+
+    public List<BrandAnalyticsDto> getBrandAnalytic() {
+        return carPostStoreClient.getBrandAnalytic();
+    }
+
+    public List<CarModelAnalyticDto> getCarModelAnalytic() {
+        return carPostStoreClient.getCarModelAnalytic();
+    }
+
+    public List<CarPriceAnalyticsDto> getCarPriceAnalytic() {
+        return carPostStoreClient.getCarPriceAnalytic();
     }
 }
