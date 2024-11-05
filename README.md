@@ -6,7 +6,7 @@ Este projeto utiliza **Spring Boot** e **Apache Kafka** para implementar um sist
 
 - **Publicação e Consumo de Mensagens**: Microsserviços que publicam e consomem mensagens de tópicos Kafka.
 - **ms-data (Analytics Service)**: Processa e armazena dados analíticos, como o número de posts por marca, modelo e preços dos carros.
-- **Configuração com Docker Compose**: Configuração de Kafka e Zookeeper para simplificar o gerenciamento de contêineres.
+- **Configuração com Docker Compose**: Configuração de Kafka, Zookeeper e Postgres para simplificar o gerenciamento de contêineres.
 - **Monitoramento com Kafka UI e Conduktor**: Monitoramento de tópicos e mensagens usando o Kafka UI e Conduktor.
 
 ## Microsserviços
@@ -67,3 +67,40 @@ O **ms-data** é responsável por receber e processar mensagens do tópico Kafka
 
 - **Docker** e **Docker Compose**
 - **Java 17** ou superior
+
+## Instruções para Executar Kafka e Postgres com Docker Compose
+
+1. **Rodar o Docker Compose**
+
+   No terminal, vá para o diretório onde o `docker-compose.yml` está localizado e execute:
+
+   ```bash
+   docker-compose up -d
+   ```
+
+   Este comando iniciará os serviços Kafka, Zookeeper e Postgres em segundo plano.
+
+2. **Verificar os Contêineres**
+
+   Para verificar se os contêineres estão rodando corretamente, use o comando:
+
+   ```bash
+   docker-compose ps
+   ```
+
+3. **Conexão ao Postgres**
+
+## Criar Bancos de Dados com pgAdmin4
+
+1. **Acessar o pgAdmin4**: Instalar o pgAdmin4 e conecte-se ao servidor Postgres configurado. Use as credenciais definidas no `docker-compose.yml`.
+
+2. **Criar um Novo Banco de Dados**:
+   - Clique com o botão direito sobre o servidor do Postgres e selecione **Create > Database**.
+   - Na janela que abrir:
+     - Em **Database name**, digite `car_post_analytics`.
+     - Clique em **Save** para criar o banco de dados.
+
+3. **Repetir o Processo para o Segundo Banco de Dados**:
+   - Repita o passo anterior, criando o banco de dados `car_post_storage`.
+
+4. **Confirmação**: Os bancos de dados `car_post_analytics` e `car_post_storage` agora devem aparecer listados no painel esquerdo do pgAdmin4.
